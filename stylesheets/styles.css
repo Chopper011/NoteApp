@@ -1,3 +1,11 @@
 .jumbotron.text-center{
-    background-image: url("https://img2.freepng.es/20180204/fpe/kisspng-dialogue-interpersonal-relationship-understanding-computer-class-pictures-5a76efa9c77879.0032344515177440418171.jpgpg");
+    background-image: url("https://img2.freepng.es/20180204/fpe/kisspng-dialogue-interpersonal-relationship-understanding-computer-class-pictures-5a76efa9c77879.0032344515177440418171.jpg");
+}
+
+.jumbotron.text-center h1{
+    color: whitesmoke;
+}
+
+.col{
+    margin-top: 50px;
 }
