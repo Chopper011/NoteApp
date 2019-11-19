@@ -2,14 +2,26 @@ body{
     background-color: black;
 }
 
+.col-sm-4{
+    color: whitesmoke;
+}
+
 .jumbotron.text-center{
     background-image: url("TT.jpg");
 }
 
 .jumbotron.text-center h1{
-    color: rgb(255, 217, 47)    
+    color: lime    
 }
 
 .col{
     margin-top: 50px;
+}
+
+.container.col-sm-6.col-sm-push-3{
+    color: lightgray;
+}
+
+.ListAllText{
+    color: lightgray;
 }
