@@ -1,0 +1,15 @@
+body{   
+    background-color: black;
+}
+
+.jumbotron.text-center{
+    background-image: url("TT.jpg");
+}
+
+.jumbotron.text-center h1{
+    color: rgb(255, 217, 47)    
+}
+
+.col{
+    margin-top: 50px;
+}
