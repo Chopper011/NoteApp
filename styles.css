@@ -7,11 +7,11 @@ body{
 }
 
 .jumbotron.text-center{
-    background-image: url("TT.jpg");
+    background-image: url("TTps.jpg");
 }
 
 .jumbotron.text-center h1{
-    color: lime    
+    color: whitesmoke    
 }
 
 .col{
@@ -24,4 +24,16 @@ body{
 
 .ListAllText{
     color: lightgray;
+}
+
+.rubrik{
+    color: lightgrey;   
+}
+
+.text{
+    color: lightgrey;
+}
+
+.container.col-sm-6.col-sm-push-3{
+    text-align: center;
 }
