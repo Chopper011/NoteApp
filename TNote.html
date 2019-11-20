@@ -57,7 +57,10 @@
                 }
                 )</script></h3>
 
-                <p></p>
+                <p><script>app.get('/' , function(req,res){
+                        res.sendFile(__dirname + 'Note.html')
+                }
+                )</script></p>
         </div>
          
          //Prata med db för att skriva ut input till db
