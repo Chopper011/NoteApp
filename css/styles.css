@@ -37,3 +37,11 @@ body{
 .container.col-sm-6.col-sm-push-3{
     text-align: center;
 }
+
+.textNote {
+      color: black;
+      padding: 30px 50px 50px 50px;
+      background-color: #e0ab0e;
+      border-radius: 50px;
+      margin: 50px;
+}
