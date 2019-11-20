@@ -8,7 +8,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" type = "text/css" href="../css/styles.css">
     <title>Note App</title>
 </head>
 <body>
@@ -27,16 +27,14 @@
                         </li>
          </ul>
                 <br>
+        <form action="/processpost" method="POST"></form>
                 <label class="rubrik" for="usr"><b>Rubrik:</b></label>
-                <input type="text" class="form-control" id="usr">               
+                <input name="rubrik" type="text" class="form-control" id="usr">               
                 <label class="text" for="comment"><b>Text:</b></label>
-                <textarea class="form-control" rows="8" id="comment"></textarea>
+                <textarea name="contenttext" class="form-control" rows="8" id="comment"></textarea>
                 <br>
-                <button type="button" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-success" style="background-color:dodgerblue; border-color: dodgerblue;" onclick="location.href='TNote.html'" type="button">Show all</button>
-
-                //Save Button skall spara och rensa
-                //Save All Button skall visa nästa sida med alla tidigare inputs
-                //db behövs för kopplingen mellan Note.html och Tnote.html
+                <input type="submit" class="btn btn-success"></input>
+                <button class="btn btn-success" style="background-color:dodgerblue; border-color: dodgerblue;" onclick="location.href='TNote.html'" type="button">Show all</button>
+        </form> 
         </body>
 </html5>
