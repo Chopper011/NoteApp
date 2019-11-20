@@ -7,6 +7,11 @@ client.connect(err => {
   client.close();
 });
 
+
+
+//Behöver funktionabel kod och att mongolDB funkar
+
+
 var url = 'mongodb://localhost:27017/test';
 
 co(function*() {
