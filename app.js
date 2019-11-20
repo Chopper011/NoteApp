@@ -4,18 +4,20 @@ var app = express();
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded();
 
+app.use(express.static('html'))
+
 app.get('/', function (req,res){
-    res.sendfile(__dirname + '/Note.html');
-    res.sendfile(+ '/styles.css');
+    res.sendfile(__dirname + '/html/Note.html');
+    res.sendfile(__dirname + '/css/styles.css');
 })
-app.get('/OmOss.html', function(req, res){
-    res.sendfile(__dirname + "/OmOss.html");
+app.get(__dirname + '/OmOss.html', function(req, res){
+    res.sendfile(__dirname + "/html/OmOss.html");
 })
-app.get('/TNote.html', function(req, res){
-    res.sendfile(__dirname + "/TNote.html");
+app.get(__dirname + '/TNote.html', function(req, res){
+    res.sendfile(__dirname + "/html/TNote.html");
 })
-app.get('/Note.html', function(req, res){
-    res.sendfile(__dirname + "/Note.html");
+app.get(__dirname + '/Note.html', function(req, res){
+    res.sendfile(__dirname + "/html/Note.html");
 })
 
 app.post('/processpost', urlencodedParser, function(req, res){
