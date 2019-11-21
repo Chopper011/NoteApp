@@ -9,20 +9,18 @@ client.connect(err => {
  
 });
 
-var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/note");
+
 
 var noteSchema = new mongoose.Schema({
-    header: String,
-    note: String
+    rubrik: String,
+    contenttext: String
   });
 
-  var Note = mongoose.model("Note", nameSchema);
+  var User = mongoose.model("Note", noteSchema);
 
-  app.post("/addnnote", (req, res) => {
+  app.post("/processpost", (req, res) => {
 
-    var myData = new Note(req.body);
+    var myData = new User(req.body);
     myData.save()
         .then(item => {
          res.send("Note saved to database");
@@ -33,6 +31,9 @@ var noteSchema = new mongoose.Schema({
  
 });
 
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/note");
 
 var express = require('express');
 var app = express();
