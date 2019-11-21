@@ -88,4 +88,3 @@ function insertDocuments (db, callback) {
     });
   };
   
-  
