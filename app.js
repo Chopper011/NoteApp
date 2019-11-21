@@ -9,7 +9,9 @@ client.connect(err => {
  
 });
 
-
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/note");
 
 var noteSchema = new mongoose.Schema({
     rubrik: String,
@@ -31,9 +33,7 @@ var noteSchema = new mongoose.Schema({
  
 });
 
-var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/note");
+
 
 var express = require('express');
 var app = express();
