@@ -39,5 +39,5 @@ app.post('/processpost', urlencodedParser, function(req, res){
 })
 
 var server = app.listen(7722, function(){
-    console.log('server is up and running ' + server.address().port);
+    console.log('server is up and running' + server.address().port);
 });
