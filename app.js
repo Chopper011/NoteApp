@@ -5,7 +5,34 @@ client.connect(err => {
  const collection = client.db("test").collection("devices");
  console.log("Databas connected!");
  client.close();
+
+ 
 });
+
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/note");
+
+var noteSchema = new mongoose.Schema({
+    header: String,
+    note: String
+  });
+
+  var Note = mongoose.model("Note", nameSchema);
+
+  app.post("/addnnote", (req, res) => {
+
+    var myData = new Note(req.body);
+    myData.save()
+        .then(item => {
+         res.send("Note saved to database");
+    })
+    .catch(err => {
+      res.status(400).send("unable to save to database");
+    }   );
+ 
+});
+
 
 var express = require('express');
 var app = express();
