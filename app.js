@@ -3,12 +3,11 @@ var uri = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, {useUnifiedTopology:true}, function (err, db) {
+    var dbo = db.db("Notedb");
     if (err) throw err;
-    var dbo = db.db("notedb");
-    console.log("Databas connected!");
+    console.log("Database upp and runnning!");
     db.close();
-
 });
 
 
@@ -45,12 +44,12 @@ app.post('/processpost', urlencodedParser, function( req, res){
     //Db
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("notedb");
+        var dbo = db.db("Notedb");
         var mynote = 
             { rubrik: rubrik ,text: textcontent }
         ;
 
-        dbo.collection("note").insertOne(mynote, function(err, res) {
+        dbo.collection("Note").insertOne(mynote, function(err, res) {
             if (err) throw err;
             console.log("Number of notes inserted: " + res.insertedCount);
             db.close();
