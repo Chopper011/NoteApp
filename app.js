@@ -9,36 +9,6 @@ client.connect(err => {
  
 });
 
-var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/note");
-
-var express = require('express');
-var app = express();
-
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded();
-
-var noteSchema = new mongoose.Schema({
-    rubrik: String,
-    contenttext: String
-  });
-
-  var User = mongoose.model("Note", noteSchema);
-
-  app.post("/processpost", (req, res) => {
-
-    var myData = new User(req.body);
-    myData.save()
-        .then(item => {
-         res.send("Note saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    }   );
- 
-});
-
 
 
 var express = require('express');
@@ -50,8 +20,8 @@ var urlencodedParser = bodyParser.urlencoded();
 app.use(express.static('html'))
 
 app.get('/', function (req,res){
-    res.sendfile(__dirname + '/html/Note.html');
-    res.sendfile(__dirname + '/css/styles.css');
+    res.sendFile(__dirname + '/html/Note.html');
+    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/OmOss.html', function(req, res){
     res.sendfile(__dirname + "/html/OmOss.html");
@@ -69,7 +39,7 @@ app.post('/processpost', urlencodedParser, function(req, res){
         textcontent:req.body.textcontent
     };
     console.log(more);
-    res.end(JSON.stringify(more))
+    res.end(JSON.stringify(more));
 })
 
 var server = app.listen(7722, function(){
