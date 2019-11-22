@@ -1,12 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test?retryWrites=true&w=majority";
+var uri = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri, { useNewUrlParser: true });
+
 client.connect(err => {
  const collection = client.db("notedb").collection("note");
  console.log("Databas connected!");
  client.close();
-
- 
 });
 
 
@@ -35,13 +35,31 @@ app.get(__dirname + '/Note.html', function(req, res){
 })
 
 app.post('/processpost', urlencodedParser, function(req, res){
-    more = {
-        rubrik:req.body.rubrik, 
-        textcontent:req.body.textcontent
-    };
-    console.log(more);
-    res.end(JSON.stringify(more))
-})
+    
+    var rubrik = req.body.rubrik; 
+    var textcontent = req.body.textcontent;
+    
+
+    //Db
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("notedb");
+    var mynote = 
+        { rubrik: rubrik ,text: textcontent }
+    ;
+
+    dbo.collection("note").insertOne(mynote, function(err, res) {
+        if (err) throw err;
+        console.log("Number of notes inserted: " + res.insertedCount);
+        db.close();
+      });
+    
+});
+
+
+});
+
+
 
 var server = app.listen(7722, function(){
     console.log('server is up and running' + server.address().port);
