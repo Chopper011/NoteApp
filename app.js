@@ -4,7 +4,7 @@ var uri = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 MongoClient.connect(url, {useUnifiedTopology:true}, function (err, db) {
-    var dbo = db.db("Notedb");
+    var dbo = db.db('Notedb');
     if (err) throw err;
     console.log("Database upp and runnning!");
     db.close();
