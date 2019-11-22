@@ -3,10 +3,12 @@ var uri = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-client.connect(err => {
- const collection = client.db("notedb").collection("note");
- console.log("Databas connected!");
- client.close();
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("notedb");
+    console.log("Databas connected!");
+    db.close();
+
 });
 
 
@@ -34,25 +36,25 @@ app.get(__dirname + '/Note.html', function(req, res){
     res.sendfile(__dirname + "/html/Note.html");
 })
 
-app.post('/processpost', urlencodedParser, function(req, res){
+app.post('/processpost', urlencodedParser, function( req, res){
     
     var rubrik = req.body.rubrik; 
     var textcontent = req.body.textcontent;
     
 
     //Db
-MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("notedb");
-    var mynote = 
-        { rubrik: rubrik ,text: textcontent }
-    ;
-
-    dbo.collection("note").insertOne(mynote, function(err, res) {
+    MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        console.log("Number of notes inserted: " + res.insertedCount);
-        db.close();
-      });
+        var dbo = db.db("notedb");
+        var mynote = 
+            { rubrik: rubrik ,text: textcontent }
+        ;
+
+        dbo.collection("note").insertOne(mynote, function(err, res) {
+            if (err) throw err;
+            console.log("Number of notes inserted: " + res.insertedCount);
+            db.close();
+        });
     
 });
 
