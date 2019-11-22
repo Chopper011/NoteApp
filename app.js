@@ -13,6 +13,12 @@ var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/note");
 
+var express = require('express');
+var app = express();
+
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded();
+
 var noteSchema = new mongoose.Schema({
     rubrik: String,
     contenttext: String
