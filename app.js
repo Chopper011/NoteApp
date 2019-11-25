@@ -4,9 +4,7 @@ var url = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test
 const client = new MongoClient(url, { useNewUrlParser: true });
 
 MongoClient.connect(url, {useUnifiedTopology:true}, function (err, db) {
-    test.equal(null, err);
-    test.ok(db != null); 
-    var dbo = db.db("Note");
+    var dbo = MongoClient.db(Note, ); 
     if (err) throw err;
     console.log("Database up and runnning!");
     db.close();
@@ -33,17 +31,18 @@ app.get('/', function (req,res){
 })
 app.get(__dirname + '/OmOss.html', function(req, res){
     res.sendfile(__dirname + "/html/OmOss.html");
+    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/TNote.html', function(req, res){
     res.sendfile(__dirname + "/html/TNote.html");
+    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/Note.html', function(req, res){
     res.sendfile(__dirname + "/html/Note.html");
+    res.sendFile(__dirname + '/css/styles.css');
 })
 
-app.post('/processpost', app.use(bodyParser.urlencoded({
-    extended: true
-  })), function( req, res){
+app.post('/processpost', app.use(bodyParser.urlencoded({ extended: true })), function( req, res){
     
     var rubrik = req.body.rubrik; 
     var textcontent = req.body.textcontent;

@@ -1,19 +1,3 @@
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Linus:abQZg3BjOq1KqG8B@test-si7mo.azure.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-
-
-
-//Behöver funktionabel kod och att mongolDB funkar
-
-
-var url = 'mongodb://localhost:27017/test';
-
 co(function*() {
   const db = yield MongoClient.connect(url);
   console.log("Connected successfully to server");
@@ -73,13 +57,7 @@ function insertDocuments (db, callback) {
     return co(function*() {
       const results = yield db
         .collection('Notes').aggregate([
-          { '$match': {
-            "categories": "Bakery"
-          } },
-          { '$group': {
-            '_id': "$stars",
-            'count': { '$sum': 1 }
-          } }
+          
         ])
         .toArray();
   
