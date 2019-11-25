@@ -1,12 +1,14 @@
-const MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://Lin: iqoIN5sqmJx6o2pt@note-3zsub.azure.mongodb.net/test?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(url, { useNewUrlParser: true });
 
 MongoClient.connect(url, {useUnifiedTopology:true}, function (err, db) {
-    var dbo = db.db('Notedb');
+    test.equal(null, err);
+    test.ok(db != null); 
+    var dbo = db.db("Note");
     if (err) throw err;
-    console.log("Database upp and runnning!");
+    console.log("Database up and runnning!");
     db.close();
 });
 
@@ -16,7 +18,12 @@ var express = require('express');
 var app = express();
 
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded();
+var urlencodedParser;
+app.use(bodyParser.json());
+//app.use(bodyParser.urlencodedParser());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.use(express.static('html'))
 
@@ -34,7 +41,9 @@ app.get(__dirname + '/Note.html', function(req, res){
     res.sendfile(__dirname + "/html/Note.html");
 })
 
-app.post('/processpost', urlencodedParser, function( req, res){
+app.post('/processpost', app.use(bodyParser.urlencoded({
+    extended: true
+  })), function( req, res){
     
     var rubrik = req.body.rubrik; 
     var textcontent = req.body.textcontent;
@@ -43,7 +52,7 @@ app.post('/processpost', urlencodedParser, function( req, res){
     //Db
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("Notedb");
+        var dbo = db.db("Note");
         var mynote = 
             { rubrik: rubrik ,text: textcontent }
         ;
