@@ -23,23 +23,20 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use(express.static('html'))
+app.use(express.static('public'))
+app.use(express.static('public/html'))
 
 app.get('/', function (req,res){
     res.sendFile(__dirname + '/html/Note.html');
-    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/OmOss.html', function(req, res){
     res.sendfile(__dirname + "/html/OmOss.html");
-    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/TNote.html', function(req, res){
     res.sendfile(__dirname + "/html/TNote.html");
-    res.sendFile(__dirname + '/css/styles.css');
 })
 app.get(__dirname + '/Note.html', function(req, res){
     res.sendfile(__dirname + "/html/Note.html");
-    res.sendFile(__dirname + '/css/styles.css');
 })
 
 app.post('/processpost', app.use(bodyParser.urlencoded({ extended: true })), function( req, res){
